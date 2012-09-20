@@ -84,7 +84,7 @@
 	
 	// Static Exposure instance.
 	$.exposure = {
-		v : '1.0',
+		v : '1.0.1',
 		
 		// Predefined selectors.
 		defaultTargetId : 'exposure',
@@ -244,7 +244,7 @@
 		stretchToMaxSize : false,
 		fullScreen : false,
 		onEnterFullScreen : function(mask) {
-			mask.show();	
+			mask.show();
 		},
 		onExitFullScreen : function(target, mask) {
 			target.hide();
@@ -1207,8 +1207,7 @@
 								}
 								
 								if (!$(this).width() || !$(this).height()) {
-									// Workaround for bug caused by AdBlock plugin for Chrome and Safari: 
-									// http://code.google.com/p/adblockforchrome/issues/detail?id=3701
+									// Sometimes image dimentions are not immediately set by the browser.
 									var i = $(this);
 									var delay = setInterval(function() {
 										gallery.resizeContainer(i);								
@@ -1628,17 +1627,17 @@
 			fitToWindow : function() {
 				gallery.maxWidth = $(window).width();
 				gallery.maxHeight = $(window).height();
-				var image = gallery.targetElement.find('.' + $.exposure.currentImageClass).width('auto').height('auto');
-				gallery.fitToMaxSize(image);
+				var image = gallery.targetElement.find('.' + $.exposure.currentImageClass).width('auto').height('auto');				
 				
 				if (!image.width() || !image.height()) {
-					// Workaround for bug caused by AdBlock plugin for Chrome and Safari: 
-					// http://code.google.com/p/adblockforchrome/issues/detail?id=3701
+					// Sometimes image dimentions are not immediately set by the browser.
 					var delay = setInterval(function() {
+						gallery.fitToMaxSize(image);
 						gallery.centerImageInWindow(image);
 						clearTimeout(delay);
 					}, 2);
 				} else {	
+					gallery.fitToMaxSize(image);
 					gallery.centerImageInWindow(image);
 				}
 			},
