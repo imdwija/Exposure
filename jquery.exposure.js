@@ -1179,7 +1179,7 @@
 									thumb.parent().siblings().removeClass(active);
 									thumb.parent().addClass(active);
 								} else {
-									gallery.find$('li.' + active).removeClass(active);
+									gallery.find('li.' + active).removeClass(active);
 								}
 							}
 							
