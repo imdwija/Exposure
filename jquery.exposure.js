@@ -143,7 +143,7 @@
 		*/
 		startsWith : function(s1, s2) {
 			if (s1 && s2) {
-				return s1.match("^"+s2) === s2;
+				return s1.indexOf(s2) === 0;
 			}
 			return false;
 		},
