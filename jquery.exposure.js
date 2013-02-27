@@ -1,6 +1,6 @@
 /*
 * Exposure (http://http://exposure.blogocracy.org/)
-* Copyright 2011, Kristoffer Jelbring
+* Copyright 2013, Kristoffer Jelbring
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 	/**
 	* @name Exposure
 	* @author Kristoffer Jelbring (kris@blogocracy.org)
-	* @version 1.0
+	* @version 1.0.2
 	*
 	* @type jQuery
 	* @cat plugins/Media
@@ -84,7 +84,7 @@
 	
 	// Static Exposure instance.
 	$.exposure = {
-		v : '1.0.1',
+		v : '1.0.2',
 		
 		// Predefined selectors.
 		defaultTargetId : 'exposure',
