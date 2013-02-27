@@ -1291,7 +1291,7 @@
 					gallery.current = index;
 					
 					// If using carousel controls make sure to properly update the thumbnails.
-					if (gallery.carouselControls && (gallery.images.length > gallery.pageSize || gallery.images.length == gallery.pageSize)) {
+					if (gallery.carouselControls && (gallery.images.length > gallery.pageSize || gallery.images.length <= gallery.pageSize)) {
 		                var firstVisibleImage = index;
 		                var lastVisibleImage = gallery.pageSize-1;
 		                var flooredVisibleImages = Math.floor(gallery.pageSize/2);
