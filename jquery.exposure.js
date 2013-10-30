@@ -1837,7 +1837,7 @@
 			
 			var foundImage = false;
 			var foundThumb = false;
-		
+
 			if ($(this).children('li').length) {
 				var selectedIndex = null;
 				
@@ -1895,7 +1895,7 @@
 					gallery.pageSize = 1;
 					
 					// Remove the thumbnails container.
-					$(ex.thumbsClass).remove();
+					$('.' + ex.thumbsClass).remove();
 				}
 			
 				if (foundImage) {
