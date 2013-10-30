@@ -144,7 +144,7 @@
 		*/
 		startsWith : function(s1, s2) {
 			if (s1 && s2) {
-				return s1.match("^"+s2) === s2;
+				return s1.indexOf(s2) === 0;
 			}
 			return false;
 		},
@@ -1295,7 +1295,7 @@
 					gallery.current = index;
 					
 					// If using carousel controls make sure to properly update the thumbnails.
-					if (gallery.carouselControls && gallery.images.length > gallery.pageSize) {
+					if (gallery.carouselControls && (gallery.images.length > gallery.pageSize || gallery.images.length <= gallery.pageSize)) {
 		                var firstVisibleImage = index;
 		                var lastVisibleImage = gallery.pageSize-1;
 		                var flooredVisibleImages = Math.floor(gallery.pageSize/2);
