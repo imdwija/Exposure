@@ -1,6 +1,6 @@
 /*
 * Exposure (http://http://exposure.blogocracy.org/)
-* Copyright 2011, Kristoffer Jelbring
+* Copyright 2013, Kristoffer Jelbring
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 	/**
 	* @name Exposure
 	* @author Kristoffer Jelbring (kris@blogocracy.org)
-	* @version 1.0
+	* @version 1.0.2
 	*
 	* @type jQuery
 	* @cat plugins/Media
@@ -59,6 +59,7 @@
 	*	onPrev: (function) Callback function that is called when prevImage is called.
 	*	onPageChanged: (function) Callback function that is called when goToPage is called. Is not called when carouselControls is set. Defaults to showing all thumbnails on the current page.
 	*	onPagingLink: (function) Callback function that is called when a new paging link has been added. Defaults to returning the link.
+	* 	onActivePageLink: (function) Callback function that is called when a new paging link for the currently active page has been added. Defaults to returning the link.
 	*	separatePageBrowsing: (boolean) Enable separate page browsing (change page without changing the image being viewed). Defaults to false.
 	*	loop: (boolean) Start over when last image is reached.
 	*	onEndOfLoop: (function) Callback function that is called when the last image is reached and loop option is set to false.
@@ -84,7 +85,7 @@
 	
 	// Static Exposure instance.
 	$.exposure = {
-		v : '1.0.1',
+		v : '1.0.2',
 		
 		// Predefined selectors.
 		defaultTargetId : 'exposure',
@@ -227,6 +228,9 @@
 		onPrev : function() {},
 		onPageChanged : function() {},
 		onPagingLink : function(link) {
+			return link;
+		},
+		onActivePageLink : function(link) {
 			return link;
 		},
 		separatePageBrowsing : false,
@@ -503,7 +507,7 @@
 						$(this).replaceWith(gallery.newPagingLink(current)); 
 					});
 					paging.find('a[rel="' + newActivePage + '"]').each(function() { 
-						$(this).replaceWith($('<span>' + newActivePage + '</span>').addClass(ex.activeLinkClass)); 
+						$(this).replaceWith(gallery.onActivePageLink($('<span>' + newActivePage + '</span>')).addClass(ex.activeLinkClass)); 
 					});
 					var pageCount = gallery.imageControls ? gallery.numberOfImages() : gallery.numberOfPages();
 					if (gallery.visiblePages > 0 && pageCount > gallery.visiblePages) {
@@ -548,7 +552,7 @@
 						gallery.goToPage(rel);
 					}
 				};
-				return ex.createLink(index, onclick).attr('rel', index);
+				return gallery.onPagingLink(ex.createLink(index, onclick).attr('rel', index));
 			},
 			
 			/**
